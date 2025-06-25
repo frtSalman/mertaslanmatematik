@@ -23,6 +23,8 @@ app.use(
             'https://www.mertaslanmatematik.com',
             'https://mertaslanmatematik.com',
         ],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
     })
 ); // prevent the cors errors

@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json()); // allow us to parse incoming request from req.body
 app.use(cookieParser()); // allow us to parse incoming cookies
-app.use(
+/* app.use(
     cors({
         origin: [
             'https://www.mertaslanmatematik.com',
@@ -27,7 +27,7 @@ app.use(
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
     })
-); // prevent the cors errors
+); // prevent the cors errors */
 
 app.options('*', cors());
 

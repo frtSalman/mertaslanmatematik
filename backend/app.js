@@ -17,7 +17,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json()); // allow us to parse incoming request from req.body
 app.use(cookieParser()); // allow us to parse incoming cookies
-app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // prevent the cors errors
+app.use(cors({ origin: 'http://127.0.0.1:5173', credentials: true })); // prevent the cors errors
+
+app.get('/', (req, res) => {
+    return res.json({ message: 'Welcome To My API' });
+});
 
 app.use('/api/auth', authRoutes);
 
@@ -31,7 +35,7 @@ app.use('/api/student-statistics', statisticRoutes);
 
 app.use('/api/uploads', uploadRoutes);
 
-db.sync({ alter: true })
+db.sync()
     .then(results =>
         app.listen(PORT, () => console.log(`Server is running on port:${PORT}`))
     )

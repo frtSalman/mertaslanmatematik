@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/uploads"
-    : "http://31.97.184.39:5000/api/uploads";
+    : "https://api.mertaslanmatematik.com/api/uploads";
 
 export const getQuestions = async (params) => {
   const { user, studentId } = params;

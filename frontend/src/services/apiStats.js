@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/student-statistics"
-    : "http://31.97.184.39:5000/api/student-statistics";
+    : "https://api.mertaslanmatematik.com/api/student-statistics";
 
 export async function getStats(studentId, homeworkId) {
   try {

@@ -17,7 +17,15 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json()); // allow us to parse incoming request from req.body
 app.use(cookieParser()); // allow us to parse incoming cookies
-app.use(cors({ origin: 'http://127.0.0.1:5173', credentials: true })); // prevent the cors errors
+app.use(
+    cors({
+        origin: [
+            'https://www.mertaslanmatematik.com',
+            'https://mertaslanmatematik.com',
+        ],
+        credentials: true,
+    })
+); // prevent the cors errors
 
 app.get('/', (req, res) => {
     return res.json({ message: 'Welcome To My API' });

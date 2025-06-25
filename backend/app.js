@@ -43,9 +43,6 @@ app.use(
     })
 );
 
-// optionally, explicitly handle preflight:
-app.options('*', (req, res) => res.sendStatus(204));
-
 app.get('/', (req, res) => {
     return res.json({ message: 'Welcome To My API' });
 });

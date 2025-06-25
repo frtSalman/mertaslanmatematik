@@ -45,7 +45,7 @@ export const sendPasswordResetEmail = async (userEmail, resetPasswordToken) => {
             subject: 'Password Yenileme Linki',
             html: PASSWORD_RESET_REQUEST_TEMPLATE.replace(
                 '{resetURL}',
-                `http://localhost:5173/reset-password/${resetPasswordToken}`
+                `https://www.mertaslanmatematik.com/reset-password/${resetPasswordToken}`
             ),
         });
         console.log('Email sent:', info.messageId);
@@ -76,7 +76,7 @@ export const sendStudentInvitationEmail = async (userEmail, signupToken) => {
             subject: 'Kayıt İşlemleri',
             html: STUDENT_INV_TEMPLATE.replace(
                 '{resetURL}',
-                `http://localhost:5173/student-signup/${signupToken}`
+                `https://www.mertaslanmatematik.com/student-signup/${signupToken}`
             ),
         });
         console.log('Email sent:', info.messageId);

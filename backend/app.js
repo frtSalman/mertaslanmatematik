@@ -29,6 +29,8 @@ app.use(
     })
 ); // prevent the cors errors
 
+app.options('*', cors());
+
 app.get('/', (req, res) => {
     return res.json({ message: 'Welcome To My API' });
 });

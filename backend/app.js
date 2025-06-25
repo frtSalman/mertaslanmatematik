@@ -15,19 +15,28 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = [
+    'https://mertaslanmatematik.com',
+    'https://www.mertaslanmatematik.com',
+    'http://127.0.0.1:5173',
+];
+
 app.use(express.json()); // allow us to parse incoming request from req.body
 app.use(cookieParser()); // allow us to parse incoming cookies
-/* app.use(
+
+app.use(
     cors({
-        origin: [
-            'https://www.mertaslanmatematik.com',
-            'https://mertaslanmatematik.com',
-        ],
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
+        origin: function (origin, callback) {
+            if (!origin) return callback(null, true);
+            if (allowedOrigins.includes(origin)) {
+                return callback(null, true);
+            } else {
+                return callback(new Error('Not allowed by CORS'));
+            }
+        },
         credentials: true,
     })
-); // prevent the cors errors */
+);
 
 app.options('*', cors());
 

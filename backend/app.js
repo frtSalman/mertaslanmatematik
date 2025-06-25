@@ -26,19 +26,25 @@ app.use(cookieParser()); // allow us to parse incoming cookies
 
 app.use(
     cors({
-        origin: function (origin, callback) {
+        origin: (origin, callback) => {
+            // allow requests with no origin (mobile apps, curl, Postman)
             if (!origin) return callback(null, true);
+
             if (allowedOrigins.includes(origin)) {
                 return callback(null, true);
-            } else {
-                return callback(new Error('Not allowed by CORS'));
             }
+
+            console.warn('Blocked CORS for origin:', origin);
+            return callback(new Error('Not allowed by CORS'));
         },
         credentials: true,
+        methods: ['GET', 'POST', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header'],
     })
 );
 
-app.options('*', cors());
+// optionally, explicitly handle preflight:
+app.options('*', (req, res) => res.sendStatus(204));
 
 app.get('/', (req, res) => {
     return res.json({ message: 'Welcome To My API' });

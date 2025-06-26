@@ -3,7 +3,6 @@ const { Users } = models;
 
 export const getStudents = async (req, res) => {
     const { teacherId } = req.params;
-    console.log(teacherId);
     try {
         const students = await Users.findAll({
             where: { role: 'student', teacherId },

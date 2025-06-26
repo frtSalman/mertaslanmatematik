@@ -43,6 +43,8 @@ const API_URL =
     ? "http://localhost:5000/api/uploads"
     : "https://www.mertaslanmatematik.com/api/uploads";
 
+const BUNNY_KEY = import.meta.env.BUNNY_KEY;
+
 export default function QuestionForm({ scheduleData, statsData }) {
   const [isPhotoUploading, setIsPhotoUploading] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -108,15 +110,15 @@ export default function QuestionForm({ scheduleData, statsData }) {
       }),
     });
 
-    console.trace(res);
+    const { uploadUrl, filePath } = await res.json();
 
-    const { uploadUrl, headers, filePath } = await res.json();
+    console.trace(await res.json());
 
     console.time("uploding photo");
     await fetch(uploadUrl, {
       method: "PUT",
       headers: {
-        AccessKey: headers.AccessKey,
+        AccessKey: BUNNY_KEY,
         "Content-Type": file.type,
         "X-Requested-With": "XMLHttpRequest",
       },

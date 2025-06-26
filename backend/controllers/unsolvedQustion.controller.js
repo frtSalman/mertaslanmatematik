@@ -1,14 +1,11 @@
 import UnsolvedQuestion from '../models/unsolvedQuesiton.model.js';
 
 const BUNNY_ZONE = 'mert-aslan-matematik';
-const BUNNY_KEY = '0b31dbbc-8909-42a7-850d2d9f9791-d851-4001';
 
 const baseHost = 'storage.bunnycdn.com';
 
 export const getUQURL = async (req, res) => {
     const queries = req.query;
-
-    console.log(queries);
 
     try {
         let questions;
@@ -78,9 +75,6 @@ export const uploadUQURL = async (req, res) => {
             message: 'Fotoğraf oluşturuldu.',
             uploadUrl,
             filePath: uniqueName,
-            headers: {
-                AccessKey: BUNNY_KEY,
-            },
         });
     } catch (error) {
         console.trace(error.message);
@@ -101,15 +95,10 @@ export const deleteUQURL = async (req, res) => {
             where: { imageUrl: `https://cdn.mertaslanmatematik.com/${path}` },
         });
 
-        console.trace(deleteUrl, BUNNY_KEY);
-
         res.json({
             success: true,
             message: 'Fotoğraf silindi.',
             deleteUrl,
-            headers: {
-                AccessKey: BUNNY_KEY,
-            },
         });
     } catch (error) {
         console.trace(error.message);

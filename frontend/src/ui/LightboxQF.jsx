@@ -5,6 +5,8 @@ const API_URL =
     ? "http://localhost:5000/api/uploads"
     : "https://www.mertaslanmatematik.com/api/uploads";
 
+const BUNNY_KEY = import.meta.env.BUNNY_KEY;
+
 function LightboxQF({ props }) {
   const {
     lightboxOpen,
@@ -27,13 +29,12 @@ function LightboxQF({ props }) {
       }
     );
     const data = await response.json();
-    /* Bunny CDN den sil */
-    console.log(data);
+
     try {
       await fetch(`${data.deleteUrl}`, {
         method: "DELETE",
         headers: {
-          AccessKey: data.headers.AccessKey,
+          AccessKey: BUNNY_KEY,
         },
       });
     } catch (error) {

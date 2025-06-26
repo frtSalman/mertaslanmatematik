@@ -44,7 +44,7 @@ const API_URL =
     ? "http://localhost:5000/api/uploads"
     : "https://api.mertaslanmatematik.com/api/uploads";
 
-const BUNNY_KEY = import.meta.env.BUNNY_KEY;
+const BUNNY_KEY = import.meta.env.VITE_BUNNY_KEY;
 
 export default function QuestionForm({ scheduleData, statsData }) {
   const [isPhotoUploading, setIsPhotoUploading] = useState(false);

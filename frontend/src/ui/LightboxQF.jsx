@@ -3,7 +3,7 @@ import useUpdateStats from "../hooks/useUpdateStats";
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/uploads"
-    : "api/uploads";
+    : "https://www.mertaslanmatematik.com/api/uploads";
 
 function LightboxQF({ props }) {
   const {

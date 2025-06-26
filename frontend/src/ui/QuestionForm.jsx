@@ -116,6 +116,7 @@ export default function QuestionForm({ scheduleData, statsData }) {
       headers: {
         AccessKey: headers.AccessKey,
         "Content-Type": file.type,
+        "X-Requested-With": "XMLHttpRequest",
       },
       body: file,
     });

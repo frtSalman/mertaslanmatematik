@@ -38,8 +38,13 @@ app.use(
             return callback(new Error('Not allowed by CORS'));
         },
         credentials: true,
-        methods: ['GET', 'POST', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header'],
+        methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
+        allowedHeaders: [
+            'Content-Type',
+            'Authorization',
+            'X-Custom-Header',
+            'AccessKey',
+        ],
     })
 );
 

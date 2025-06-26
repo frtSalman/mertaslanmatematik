@@ -1,7 +1,7 @@
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/uploads"
-    : "api/uploads";
+    : "https://www.mertaslanmatematik.com/api/uploads";
 
 function LightboxQB({ props }) {
   const { lightboxOpen, setLightboxOpen, pullZoneURL } = props;

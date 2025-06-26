@@ -16,8 +16,6 @@ const API_URL =
     ? "http://localhost:5000/api/uploads"
     : "https://api.mertaslanmatematik.com/api/uploads";
 
-const BUNNY_KEY = import.meta.env.VITE_BUNNY_KEY;
-
 const QuestionCard = ({ question, updateUQA }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const { user } = useSelector((state) => state.auth);
@@ -51,7 +49,7 @@ const QuestionCard = ({ question, updateUQA }) => {
       await fetch(`${data.deleteUrl}`, {
         method: "DELETE",
         headers: {
-          AccessKey: BUNNY_KEY,
+          AccessKey: data.key,
         },
       });
     } catch (error) {

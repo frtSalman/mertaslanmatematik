@@ -5,8 +5,6 @@ const API_URL =
     ? "http://localhost:5000/api/uploads"
     : "https://api.mertaslanmatematik.com/api/uploads";
 
-const BUNNY_KEY = import.meta.env.VITE_BUNNY_KEY;
-
 function LightboxQF({ props }) {
   const {
     lightboxOpen,
@@ -34,7 +32,7 @@ function LightboxQF({ props }) {
       await fetch(`${data.deleteUrl}`, {
         method: "DELETE",
         headers: {
-          AccessKey: BUNNY_KEY,
+          AccessKey: data.key,
         },
       });
     } catch (error) {

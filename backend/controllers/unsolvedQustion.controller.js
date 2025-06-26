@@ -1,5 +1,7 @@
 import UnsolvedQuestion from '../models/unsolvedQuesiton.model.js';
 
+const KEY = process.env.BUNNY_KEY;
+
 const BUNNY_ZONE = 'mert-aslan-matematik';
 
 const baseHost = 'storage.bunnycdn.com';
@@ -75,6 +77,7 @@ export const uploadUQURL = async (req, res) => {
             message: 'Fotoğraf oluşturuldu.',
             uploadUrl,
             filePath: uniqueName,
+            key: KEY,
         });
     } catch (error) {
         console.trace(error.message);
@@ -99,6 +102,7 @@ export const deleteUQURL = async (req, res) => {
             success: true,
             message: 'Fotoğraf silindi.',
             deleteUrl,
+            key: KEY,
         });
     } catch (error) {
         console.trace(error.message);

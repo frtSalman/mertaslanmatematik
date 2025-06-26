@@ -16,7 +16,7 @@ const API_URL =
     ? "http://localhost:5000/api/uploads"
     : "https://api.mertaslanmatematik.com/api/uploads";
 
-const BUNNY_KEY = import.meta.env.BUNNY_KEY;
+const BUNNY_KEY = import.meta.env.VITE_BUNNY_KEY;
 
 const QuestionCard = ({ question, updateUQA }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);

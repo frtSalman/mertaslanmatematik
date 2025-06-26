@@ -42,7 +42,7 @@ const pullZoneURL = "https://cdn.mertaslanmatematik.com/";
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/uploads"
-    : "https://www.mertaslanmatematik.com/api/uploads";
+    : "https://api.mertaslanmatematik.com/api/uploads";
 
 const BUNNY_KEY = import.meta.env.BUNNY_KEY;
 
@@ -99,7 +99,7 @@ export default function QuestionForm({ scheduleData, statsData }) {
   const uploadToBunny = async (file, pages) => {
     try {
       const res = await axios.post(
-        `${API_URL}/unsolved-question-url`,
+        `${API_URL}/add-unsolved-question-path`,
         {
           filename: file.name,
           homeworkId: scheduleData.hId,
@@ -122,7 +122,6 @@ export default function QuestionForm({ scheduleData, statsData }) {
         headers: {
           AccessKey: BUNNY_KEY,
           "Content-Type": file.type,
-          "X-Requested-With": "XMLHttpRequest",
         },
         body: file,
       });

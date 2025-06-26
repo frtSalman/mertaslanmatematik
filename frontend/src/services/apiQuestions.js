@@ -11,9 +11,9 @@ export const getQuestions = async (params) => {
   let getURL;
 
   if (user.role === "teacher") {
-    getURL = `${API_URL}/unsolved-question-url?role=teacher&id=${user.id}&studentId=${studentId}`;
+    getURL = `${API_URL}/get-unsolved-question-path?role=teacher&id=${user.id}&studentId=${studentId}`;
   } else {
-    getURL = `${API_URL}/unsolved-question-url?role=student&id=${user.id}&teacherId=${user.teacherId}`;
+    getURL = `${API_URL}/get-unsolved-question-path?role=student&id=${user.id}&teacherId=${user.teacherId}`;
   }
 
   try {
@@ -29,7 +29,7 @@ export const updateQuestionAppearance = async (params) => {
   const { bool, id } = params;
   try {
     const response = await axios.put(
-      `${API_URL}/unsolved-question-url/?bool=${bool}&id=${id}`
+      `${API_URL}/update-unsolved-question-view/?bool=${bool}&id=${id}`
     );
     return response.data;
   } catch (error) {

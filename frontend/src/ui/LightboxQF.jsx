@@ -3,7 +3,7 @@ import useUpdateStats from "../hooks/useUpdateStats";
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/uploads"
-    : "https://www.mertaslanmatematik.com/api/uploads";
+    : "https://api.mertaslanmatematik.com/api/uploads";
 
 const BUNNY_KEY = import.meta.env.BUNNY_KEY;
 
@@ -23,7 +23,7 @@ function LightboxQF({ props }) {
   const deleteFromBunny = async () => {
     /* unsolvedQuestions dan sil */
     const response = await fetch(
-      `${API_URL}/unsolved-question-url/${statOfDay.unsolvedQPaths[currentImageIndex]}`,
+      `${API_URL}/delete-unsolved-question-path/${statOfDay.unsolvedQPaths[currentImageIndex]}`,
       {
         method: "DELETE",
       }

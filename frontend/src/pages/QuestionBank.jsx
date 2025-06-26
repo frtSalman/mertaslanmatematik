@@ -14,7 +14,9 @@ import toast from "react-hot-toast";
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/uploads"
-    : "api/uploads";
+    : "https://api.mertaslanmatematik.com/api/uploads";
+
+const BUNNY_KEY = import.meta.env.BUNNY_KEY;
 
 const QuestionCard = ({ question, updateUQA }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -37,7 +39,7 @@ const QuestionCard = ({ question, updateUQA }) => {
   async function handleDelete() {
     /* unsolvedQuestions dan sil */
     const response = await fetch(
-      `${API_URL}/unsolved-question-url/${question.imageUrl}`,
+      `${API_URL}/delete-unsolved-question-path/${question.imageUrl}`,
       {
         method: "DELETE",
       }
@@ -49,7 +51,7 @@ const QuestionCard = ({ question, updateUQA }) => {
       await fetch(`${data.deleteUrl}`, {
         method: "DELETE",
         headers: {
-          AccessKey: data.headers.AccessKey,
+          AccessKey: BUNNY_KEY,
         },
       });
     } catch (error) {

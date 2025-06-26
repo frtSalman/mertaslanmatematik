@@ -1,5 +1,4 @@
 import express from 'express';
-import cors from 'cors';
 import {
     uploadUQURL,
     deleteUQURL,
@@ -9,14 +8,12 @@ import {
 
 const router = express.Router();
 
-router.options('/unsolved-question-url', cors());
+router.post('/add-unsolved-question-path', uploadUQURL);
 
-router.post('/unsolved-question-url', uploadUQURL);
+router.put('/update-unsolved-question-view', updateUQAppearance);
 
-router.put('/unsolved-question-url', updateUQAppearance);
+router.get('/get-unsolved-question-path', getUQURL);
 
-router.get('/unsolved-question-url', getUQURL);
-
-router.delete('/unsolved-question-url/:path', deleteUQURL);
+router.delete('/delete-unsolved-question-path/:path', deleteUQURL);
 
 export default router;

@@ -41,7 +41,7 @@ const pullZoneURL = "https://cdn.mertaslanmatematik.com/";
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/uploads"
-    : "api/uploads";
+    : "https://www.mertaslanmatematik.com/api/uploads";
 
 export default function QuestionForm({ scheduleData, statsData }) {
   const [isPhotoUploading, setIsPhotoUploading] = useState(false);

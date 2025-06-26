@@ -14,6 +14,7 @@ import "swiper/css/pagination";
 import imageCompression from "browser-image-compression";
 import ImageUploader from "./ImageUploader";
 import LightboxQF from "./LightboxQF";
+import axios from "axios";
 
 const periodStyles = {
   sabah: {
@@ -96,36 +97,40 @@ export default function QuestionForm({ scheduleData, statsData }) {
   ]);
 
   const uploadToBunny = async (file, pages) => {
-    const res = await fetch(`${API_URL}/unsolved-question-url`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        filename: file.name,
-        homeworkId: scheduleData.hId,
-        studentId: scheduleData.user.id,
-        studentName: scheduleData.user.name,
-        teacherId: scheduleData.user.teacherId,
-        subject: scheduleData.title,
-        pages,
-      }),
-    });
+    try {
+      const res = await axios.post(
+        `${API_URL}/unsolved-question-url`,
+        {
+          filename: file.name,
+          homeworkId: scheduleData.hId,
+          studentId: scheduleData.user.id,
+          studentName: scheduleData.user.name,
+          teacherId: scheduleData.user.teacherId,
+          subject: scheduleData.title,
+          pages,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-    const { uploadUrl, filePath } = await res.json();
+      const { uploadUrl, filePath } = res.data;
 
-    console.trace(await res.json());
-
-    console.time("uploding photo");
-    await fetch(uploadUrl, {
-      method: "PUT",
-      headers: {
-        AccessKey: BUNNY_KEY,
-        "Content-Type": file.type,
-        "X-Requested-With": "XMLHttpRequest",
-      },
-      body: file,
-    });
-    console.timeEnd("uploding photo");
-    return filePath; // to store or display later
+      console.time("uploding photo");
+      await fetch(uploadUrl, {
+        method: "PUT",
+        headers: {
+          AccessKey: BUNNY_KEY,
+          "Content-Type": file.type,
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        body: file,
+      });
+      console.timeEnd("uploding photo");
+      return filePath; // to store or display later
+    } catch (error) {
+      console.trace(error);
+    }
   };
 
   const handleImageUpload = async (imageFile, pages) => {

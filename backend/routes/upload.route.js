@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import {
     uploadUQURL,
     deleteUQURL,
@@ -7,6 +8,8 @@ import {
 } from '../controllers/unsolvedQustion.controller.js';
 
 const router = express.Router();
+
+router.options('/unsolved-question-url', cors());
 
 router.post('/unsolved-question-url', uploadUQURL);
 

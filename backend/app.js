@@ -48,6 +48,8 @@ app.use(
     })
 );
 
+app.options('*', (_, res) => res.sendStatus(204));
+
 app.get('/', (req, res) => {
     return res.json({ message: 'Welcome To My API' });
 });

@@ -108,6 +108,8 @@ export default function QuestionForm({ scheduleData, statsData }) {
       }),
     });
 
+    console.trace(res);
+
     const { uploadUrl, headers, filePath } = await res.json();
 
     console.time("uploding photo");

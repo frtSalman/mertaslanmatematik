@@ -44,9 +44,14 @@ export const getUQURL = async (req, res) => {
 };
 
 export const uploadUQURL = async (req, res) => {
+    console.log(
+        '🤖 hit POST /api/uploads/unsolved-question-url',
+        req.method,
+        req.headers.origin
+    );
     const { homeworkId, studentId, teacherId, subject, studentName, pages } =
         req.body;
-    console.log(req.body);
+
     /* if (!filename) return res.status(400).json({ error: 'Filename required' }); */
 
     const filename = `${studentName}-${subject}`;

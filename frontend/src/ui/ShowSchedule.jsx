@@ -52,7 +52,7 @@ export default function ShowSchedule() {
   return (
     <div className="w-full">
       <div
-        className={`p-6 shadow-lg border ${styles.container}`}
+        className={`p-6 shadow-lg border rounded-t-none rounded-b-2xl ${styles.container}`}
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}

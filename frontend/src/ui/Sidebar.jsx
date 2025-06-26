@@ -21,13 +21,17 @@ function Sidebar() {
     setIsModalOn(true);
   }
 
+  function handleOffModal() {
+    setIsModalOn(false);
+  }
+
   const students = studentsData?.data?.slice();
 
   return (
     <div className="flex-col items-center justify-center m-3">
       <Logo />
       {isModalOn && (
-        <Modal type="studentList">
+        <Modal type="studentList" manualOff={handleOffModal}>
           <StudentList
             rows={students}
             onRowSelectionChange={(newSelection) => {

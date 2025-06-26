@@ -29,7 +29,17 @@ export default function StudentList({
   };
 
   return (
-    <Paper sx={{ height: 400, width: "100%" }}>
+    <Paper
+      sx={{
+        height: 400,
+        width: "100%",
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderBottomLeftRadius: 16,
+        borderBottomRightRadius: 16,
+        overflow: "hidden",
+      }}
+    >
       <DataGrid
         initialState={{
           sorting: {

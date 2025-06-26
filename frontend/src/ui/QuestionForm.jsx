@@ -114,8 +114,6 @@ export default function QuestionForm({ scheduleData, statsData }) {
 
       const { uploadUrl, filePath, key } = res.data;
 
-      console.trace(key, uploadUrl);
-
       console.time("uploding photo");
       await fetch(uploadUrl, {
         method: "PUT",

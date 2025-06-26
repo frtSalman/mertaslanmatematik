@@ -11,11 +11,12 @@ const modalSizes = {
   sort: "w-full max-w-[400px] bg-white",
 };
 
-export default function Modal({ children, type = "normal" }) {
+export default function Modal({ children, type = "normal", manualOff = null }) {
   const dispatch = useDispatch();
 
   function handleClose() {
     dispatch(closeModal());
+    manualOff();
   }
 
   // Framer Motion variants

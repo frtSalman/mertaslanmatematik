@@ -51,7 +51,7 @@ function Sidebar() {
       {user?.role === "teacher" && (
         <div className="flex flex-row items-center justify-center gap-3 p-4 transition-all duration-300 ease-in-out background-color-orange-50 rounded-2xl">
           <p className="text-base font-semibold tracking-wide text-center text-color-orange-800 sm:text-large text-transform-uppercase">
-            {selectStudent.length === 0 && "🎓 Lütfen bir öğrenci seçiniz..."}
+            {selectStudent.length === 0 && "🎓 Öğrenci seçiniz."}
 
             {selectStudent.length > 0 && `${selectStudent[0]?.name}`}
           </p>

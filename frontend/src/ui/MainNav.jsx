@@ -10,8 +10,8 @@ function MainNav() {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <div className="mt-4 ml-2">
-      <ul className="flex flex-wrap gap-1 py-2 overflow-x-auto md:flex-col md:gap-3 md:overflow-visible">
+    <div className="m-auto">
+      <ul className="flex flex-wrap py-2 overflow-x-auto sm:gap-1 md:flex-col md:gap-3 md:overflow-visible">
         {/* <li>
           <NavLink
             to="dashboard"

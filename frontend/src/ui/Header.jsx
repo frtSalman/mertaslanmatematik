@@ -37,7 +37,7 @@ function Header() {
   }
 
   return (
-    <div className="flex flex-col gap-2 p-2 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-row flex-wrap items-center justify-between gap-2 p-2 m-auto">
       <p className="p-1 text-lg font-semibold text-gray-600 sm:p-3 sm:text-xl">
         {user?.role === "teacher"
           ? `Merhabalar ${user?.name} Hocam 🙋‍♂️`

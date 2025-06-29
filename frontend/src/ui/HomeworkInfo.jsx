@@ -59,7 +59,7 @@ export default function HomeworkInfo({ scheduleData }) {
         <h3 className="text-lg font-semibold">Çalışma Raporu</h3>
 
         {/* Inputs Grid */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="flex flex-row flex-wrap gap-2 justify-evenly md:gap-4">
           <div className="flex flex-row items-center gap-3">
             <label className="block text-sm font-[400]">Sayfa Aralığı:</label>
             <p>{statOfDay?.pages}</p>

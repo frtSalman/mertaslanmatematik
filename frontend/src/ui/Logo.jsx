@@ -1,5 +1,7 @@
 function Logo() {
-  return <img className="mt-2" src="/mert_aslan_logo.png" alt="site logo" />;
+  return (
+    <img className="mt-2 ml-2" src="/mert_aslan_logo.png" alt="site logo" />
+  );
 }
 
 export default Logo;

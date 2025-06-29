@@ -329,7 +329,7 @@ export default function QuestionForm({ scheduleData, statsData }) {
                   <img
                     src={pullZoneURL + p}
                     alt={`Yanlış ${i + 1}`}
-                    className="w-full h-auto object-contain max-h-[150px] mx-auto rounded"
+                    className="w-full h-auto object-contain max-h-[200px] mx-auto rounded"
                     loading="lazy"
                     onClick={(e) => {
                       e.stopPropagation();

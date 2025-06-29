@@ -109,7 +109,7 @@ function UpdateHomework({ data }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative grid grid-cols-1 gap-4 p-4 bg-white md:grid-cols-3"
+      className="relative grid grid-cols-1 gap-4 p-4 bg-white border rounded-t-none md:grid-cols-3 rounded-b-2xl"
     >
       {/* 1. Satır: Başlık */}
       <div className="md:col-span-3">

@@ -85,11 +85,6 @@ export default function Timetable() {
 
   return (
     <div>
-      <div className="flex flex-row items-center justify-center gap-3 p-3 mx-auto mb-4 border-l-4 border-orange-500 shadow-md w-fit bg-orange-50 rounded-2xl">
-        <p className="text-xl font-semibold tracking-wide text-orange-800 uppercase">
-          <span>Haftalık Çalışma Tablosu</span>
-        </p>
-      </div>
       <div className="flex items-start justify-center gap-3">
         <div className="flex flex-wrap justify-center gap-3">
           {isModalOn && isShowSchedule && (

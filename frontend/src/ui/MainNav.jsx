@@ -10,8 +10,8 @@ function MainNav() {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <div className="mt-[15vh] ml-4 ">
-      <ul className="flex flex-col gap-3">
+    <div className="mt-4 ml-2">
+      <ul className="flex flex-wrap gap-1 py-2 overflow-x-auto md:flex-col md:gap-3 md:overflow-visible">
         {/* <li>
           <NavLink
             to="dashboard"
@@ -24,11 +24,11 @@ function MainNav() {
             Home
           </NavLink>
         </li> */}
-        <li>
+        <li className="flex-shrink-0">
           <NavLink
             to="time-table"
             className={({ isActive }) =>
-              `flex items-center gap-3 p-4 rounded-[5px]
+              `flex items-center gap-1 p-2 rounded text-sm md:text-base md:gap-3 md:p-4
                ${isActive ? "bg-white" : "hover:bg-white"}`
             }
           >
@@ -37,11 +37,11 @@ function MainNav() {
           </NavLink>
         </li>
 
-        <li>
+        <li className="flex-shrink-0">
           <NavLink
             to="question-bank"
             className={({ isActive }) =>
-              `flex items-center gap-3 p-4 rounded-[5px]
+              `flex items-center gap-1 p-2 rounded text-sm md:text-base md:gap-3 md:p-4
                ${isActive ? "bg-white" : "hover:bg-white"}`
             }
           >
@@ -51,11 +51,11 @@ function MainNav() {
         </li>
 
         {user?.role === "teacher" && (
-          <li>
+          <li className="flex-shrink-0">
             <NavLink
               to="homework-tracking"
               className={({ isActive }) =>
-                `flex items-center gap-3 p-4 rounded-[5px]
+                `flex items-center gap-1 p-2 rounded text-sm md:text-base md:gap-3 md:p-4
                ${isActive ? "bg-white" : "hover:bg-white"}`
               }
             >

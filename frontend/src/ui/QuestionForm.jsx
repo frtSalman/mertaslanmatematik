@@ -253,27 +253,27 @@ export default function QuestionForm({ scheduleData, statsData }) {
         <h3 className="text-lg font-semibold">Çalışma Raporu</h3>
 
         {/* Inputs Grid */}
-        <div className="grid grid-cols-10 gap-2">
-          <div className="col-span-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {/* Sayfa Aralığı */}
+          <div className="flex flex-col">
             <label className="block text-sm font-medium">Sayfa Aralığı</label>
             <input
               type="text"
-              placeholder={
-                statOfDay?.pages ? statOfDay.pages : "Sayfa aralığı..."
-              }
-              className={`mt-1 block w-full rounded-md shadow-sm focus:outline-none focus:ring ${styles.input}`}
+              placeholder={statOfDay?.pages || "Sayfa aralığı..."}
+              className={`mt-1 w-full rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300 transition ${styles.input}`}
               {...register("pages", {
                 required: "Lütfen sayfa aralığını giriniz.",
               })}
             />
           </div>
 
-          <div className="col-span-3">
+          {/* Soru Sayısı */}
+          <div className="flex flex-col">
             <label className="block text-sm font-medium">Soru Sayısı</label>
             <input
               type="number"
               placeholder={statOfDay?.attempted}
-              className={`mt-1 block w-full rounded-md shadow-sm focus:outline-none focus:ring ${styles.input}`}
+              className={`mt-1 w-full rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300 transition ${styles.input}`}
               {...register("qN", {
                 required: "Lütfen toplam soru sayısını giriniz.",
                 valueAsNumber: true,
@@ -285,15 +285,15 @@ export default function QuestionForm({ scheduleData, statsData }) {
             )}
           </div>
 
-          <div className="col-span-3">
-            <label className="block text-sm font-medium ">Doğru Sayısı</label>
+          {/* Doğru Sayısı */}
+          <div className="flex flex-col">
+            <label className="block text-sm font-medium">Doğru Sayısı</label>
             <input
               type="number"
               placeholder={statOfDay?.correct}
-              className={`mt-1 block w-full rounded-md shadow-sm focus:outline-none focus:ring ${styles.input}`}
+              className={`mt-1 w-full rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300 transition ${styles.input}`}
               {...register("cN", {
                 required: "Lütfen doğru cevap sayısını giriniz.",
-
                 valueAsNumber: true,
                 validate: (value) =>
                   value <= qN || "Doğru sayısı soru sayısından fazla olamaz",

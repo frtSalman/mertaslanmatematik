@@ -28,8 +28,10 @@ function Sidebar() {
   const students = studentsData?.data?.slice();
 
   return (
-    <div className="flex-col items-center justify-center m-3">
-      <Logo />
+    <aside className="flex flex-col gap-3 md:gap-6 background-color-white rounded-2xl padding-4 sm:padding-6 min-height-screen max-width-full sm:max-width-xs">
+      <div className="flex justify-center">
+        <Logo className="width-32 sm:width-40" />
+      </div>
       {isModalOn && (
         <Modal type="studentList" manualOff={handleOffModal}>
           <StudentList
@@ -47,32 +49,31 @@ function Sidebar() {
       )}
 
       {user?.role === "teacher" && (
-        <div className="flex flex-row items-center justify-center gap-3 p-2 mx-auto mt-5 mb-4 border-l-4 border-orange-500 shadow-md w-fit bg-orange-50 rounded-2xl">
-          <p className="font-semibold tracking-wide text-orange-800 uppercase text-md">
+        <div className="flex flex-row items-center justify-center gap-3 p-4 transition-all duration-300 ease-in-out background-color-orange-50 rounded-2xl">
+          <p className="text-base font-semibold tracking-wide text-center text-color-orange-800 sm:text-large text-transform-uppercase">
             {selectStudent.length === 0 && "🎓 Lütfen bir öğrenci seçiniz..."}
 
             {selectStudent.length > 0 && `${selectStudent[0]?.name}`}
           </p>
-          <div className="flex items-center justify-center pt-1">
-            <div className="relative group">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePickStudent();
-                }}
-                className="flex items-center justify-center w-8 h-8 text-white transition bg-green-500 rounded-lg hover:bg-green-600 focus:ring-2 focus:ring-green-300"
-              >
-                <ZoomIn />
-              </motion.button>
-            </div>
-          </div>
+
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={(e) => {
+              e.preventDefault();
+              handlePickStudent();
+            }}
+            className="flex items-center self-center justify-center rounded-full shadow-md height-10 width-10 background-color-green-500 text-color-white hover:background-color-green-600 focus:outline-none focus:ring-2 focus:ring-color-green-300"
+          >
+            <ZoomIn />
+          </motion.button>
         </div>
       )}
 
-      <MainNav />
-    </div>
+      <div className="flex flex-col items-center justify-center grow">
+        <MainNav />
+      </div>
+    </aside>
   );
 }
 

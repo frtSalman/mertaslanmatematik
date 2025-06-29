@@ -37,13 +37,13 @@ function Header() {
   }
 
   return (
-    <div className="flex items-center justify-between">
-      <p className="p-3 text-xl font-semibold text-gray-600">
+    <div className="flex flex-col gap-2 p-2 sm:flex-row sm:items-center sm:justify-between">
+      <p className="p-1 text-lg font-semibold text-gray-600 sm:p-3 sm:text-xl">
         {user?.role === "teacher"
           ? `Merhabalar ${user?.name} Hocam 🙋‍♂️`
           : `Başarılar ${user?.name} 🙌`}
       </p>
-      <div className="flex items-center justify-end p-3 ">
+      <div className="flex justify-end p-1 sm:p-3">
         {isModalOn && isInvOn && user.role === "teacher" && (
           <Modal>
             <form
@@ -85,39 +85,40 @@ function Header() {
             </form>
           </Modal>
         )}
-
-        {user?.role === "teacher" && (
-          <div className="relative">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-10 h-10 m-2 font-bold text-white transition duration-200 bg-orange-500 rounded-lg shadow-lg hover:from-orange-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-white"
-              type="button"
-              onClick={handleOpenModal}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <Loader className="w-6 h-6 mx-auto animate-spin" />
-              ) : (
-                <SmilePlus className="m-auto" />
-              )}
-            </motion.button>
-          </div>
-        )}
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="w-10 h-10 m-2 font-bold text-white transition duration-200 rounded-lg shadow-lg bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-white"
-          type="button"
-          onClick={handleLogout}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <Loader className="w-6 h-6 mx-auto animate-spin" />
-          ) : (
-            <LogOut className="m-auto" />
+        <div className="flex gap-1">
+          {user?.role === "teacher" && (
+            <div className="relative">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-10 h-10 m-2 font-bold text-white transition duration-200 bg-orange-500 rounded-lg shadow-lg hover:from-orange-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-white"
+                type="button"
+                onClick={handleOpenModal}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <Loader className="w-6 h-6 mx-auto animate-spin" />
+                ) : (
+                  <SmilePlus className="m-auto" />
+                )}
+              </motion.button>
+            </div>
           )}
-        </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-10 h-10 m-2 font-bold text-white transition duration-200 rounded-lg shadow-lg bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-white"
+            type="button"
+            onClick={handleLogout}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Loader className="w-6 h-6 mx-auto animate-spin" />
+            ) : (
+              <LogOut className="m-auto" />
+            )}
+          </motion.button>
+        </div>
       </div>
     </div>
   );

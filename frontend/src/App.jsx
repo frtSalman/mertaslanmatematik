@@ -107,7 +107,7 @@ function App() {
             }
           />
           <Route element={<AppLayout />}>
-            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route index element={<Navigate replace to="time-table" />} />
             <Route
               path="dashboard"
               element={

@@ -22,6 +22,7 @@
     "@tanstack/react-query-devtools": "^5.71.1",
     "axios": "^1.7.3",
     "browser-image-compression": "^2.0.2",
+    "d3": "^7.9.0",
     "date-fns": "^4.1.0",
     "framer-motion": "^11.3.21",
     "lucide-react": "^0.424.0",

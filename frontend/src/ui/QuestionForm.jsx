@@ -79,7 +79,7 @@ export default function QuestionForm({ scheduleData, statsData }) {
 
   const requiredPhotos = Math.max(qN - cN, 0);
 
-  useMemo(() => {
+  useEffect(() => {
     if (
       scheduleData.hStatus === false &&
       stats?.length === scheduleData.hDayNum

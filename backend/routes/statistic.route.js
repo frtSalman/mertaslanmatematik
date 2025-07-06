@@ -10,9 +10,9 @@ const router = express.Router();
 
 router.post('/add-stats', addStats);
 
-router.get('/get-stats', getHomeworkStats);
-
 router.get('/get-stats/:studentId', getStudentStats);
+
+router.get('/get-stats', getHomeworkStats);
 
 router.put('/update-stats', updateStats);
 

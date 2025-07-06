@@ -8,9 +8,9 @@ import {
 
 const router = express.Router();
 
-router.get('/get-student-stats/:studentId', getStudentStats);
+router.get('/student-stats/:studentId', getStudentStats);
 
-router.get('/get-all-stats', getHomeworkStats);
+router.get('/all-stats', getHomeworkStats);
 
 router.post('/add-stats', addStats);
 

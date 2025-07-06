@@ -51,6 +51,8 @@ export const getStudentStats = async (req, res) => {
             where: { studentId },
         });
 
+        console.trace(stats);
+
         res.status(200).json({
             success: true,
             stats,

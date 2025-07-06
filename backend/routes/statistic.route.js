@@ -8,11 +8,11 @@ import {
 
 const router = express.Router();
 
+router.get('/get-student-stats/:studentId', getStudentStats);
+
+router.get('/get-all-stats', getHomeworkStats);
+
 router.post('/add-stats', addStats);
-
-router.get('/get-stats/:studentId', getStudentStats);
-
-router.get('/get-stats', getHomeworkStats);
 
 router.put('/update-stats', updateStats);
 

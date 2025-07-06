@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true;
 export async function getHomeworkStats(studentId, homeworkId) {
   try {
     const response = await axios.get(
-      `${API_URL}/get-stats?studentId=${studentId}&homeworkId=${homeworkId}`
+      `${API_URL}/get-all-stats?studentId=${studentId}&homeworkId=${homeworkId}`
     );
     return response.data;
   } catch (error) {
@@ -23,7 +23,9 @@ export async function getHomeworkStats(studentId, homeworkId) {
 
 export async function getStudentStats(studentId) {
   try {
-    const response = await axios.get(`${API_URL}/get-stats/${studentId}`);
+    const response = await axios.get(
+      `${API_URL}/get-student-stats/${studentId}`
+    );
     return response.data;
   } catch (error) {
     console.log(error.message);

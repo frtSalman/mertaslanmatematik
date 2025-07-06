@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import * as d3 from "d3";
 
 const StudentPerformanceChart = ({ data }) => {
@@ -9,11 +9,10 @@ const StudentPerformanceChart = ({ data }) => {
   const [totalCorrect, setTotalCorrect] = useState(0);
   const [totalSuccessRate, setTotalSuccessRate] = useState(0);
 
-  const subjects = [];
-
-  data?.stats.forEach((d) => {
-    if (!subjects.includes(d.subject)) subjects.push(d.subject);
-  });
+  const subjects = useMemo(
+    () => Array.from(new Set(data?.stats.map((d) => d.subject || []))),
+    [data]
+  );
 
   const drawChart = (filteredData) => {
     // Eski SVG içeriğini temizle
@@ -253,7 +252,7 @@ const StudentPerformanceChart = ({ data }) => {
   };
 
   // Grafik güncelleme
-  useMemo(() => {
+  useEffect(() => {
     if (data?.stats.length === 0 || !selectedSubject) return;
 
     console.log(data);

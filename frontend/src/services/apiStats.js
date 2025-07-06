@@ -5,7 +5,7 @@ const HOST = import.meta.env.VITE_API_URL;
 const API_URL =
   import.meta.env.MODE === "development"
     ? `http://${HOST}:5000/api/student-statistics`
-    : "http://31.97.184.39:5000/api/student-statistics";
+    : "https://api.mertaslanmatematik.com/api/student-statistics";
 
 axios.defaults.withCredentials = true;
 

@@ -52,6 +52,8 @@ app.get('/', (req, res) => {
     return res.json({ message: 'Welcome To My API' });
 });
 
+app.use('/api/analysis', statisticRoutes);
+
 app.use('/api/uploads', uploadRoutes);
 
 app.use('/api/auth', authRoutes);
@@ -61,8 +63,6 @@ app.use('/api/timetable', timeTableRoutes);
 app.use('/api/users', userRoutes);
 
 app.use('/api/homeworks', homeworkRoutes);
-
-app.use('/api/analysis', statisticRoutes);
 
 db.sync()
     .then(results =>

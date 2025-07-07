@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
     return res.json({ message: 'Welcome To My API' });
 });
 
-app.get('/api/getStats', getStats);
+app.get('/getStats', getStats);
 
 app.use('/api/analysis', statisticRoutes);
 

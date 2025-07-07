@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true;
 export async function getStats(studentId, homeworkId) {
   try {
     const response = await axios.get(
-      `${API_URL}/get-stats?studentId=${studentId}&homeworkId=${homeworkId} `
+      `${API_URL}/?studentId=${studentId}&homeworkId=${homeworkId} `
     );
     return response.data;
   } catch (error) {

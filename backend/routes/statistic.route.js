@@ -7,7 +7,7 @@ import {
 
 const router = express.Router();
 
-router.get('/get-stats', getStats);
+router.get('/', getStats);
 
 router.post('/add-stats', addStats);
 

@@ -9,40 +9,14 @@ const API_URL =
 
 axios.defaults.withCredentials = true;
 
-export async function getHomeworkStats(studentId, homeworkId) {
+export async function getStats(studentId, homeworkId) {
   try {
-    const url = `${API_URL}/all-stats?studentId=${studentId}&homeworkId=${homeworkId}`;
-    const response = await fetch(url, {
-      method: "GET",
-      credentials: "include", // Equivalent to axios.defaults.withCredentials = true
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    return await response.json();
+    const response = await axios.get(
+      `${API_URL}/get-stats?studentId=${studentId}&homeworkId=${homeworkId} `
+    );
+    return response.data;
   } catch (error) {
-    console.error("Fetch error:", error.message);
-    throw error;
-  }
-}
-
-export async function getStudentStats(studentId) {
-  try {
-    const url = `${API_URL}/student-stats/${studentId}`;
-    const response = await fetch(url, {
-      method: "GET",
-      credentials: "include",
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Fetch error:", error.message);
+    console.log(error.message);
     throw error;
   }
 }

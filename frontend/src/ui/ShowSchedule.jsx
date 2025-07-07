@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import QuestionForm from "./QuestionForm";
 import HomeworkInfo from "./HomeworkInfo";
 import { useQuery } from "@tanstack/react-query";
-import { getHomeworkStats } from "../services/apiStats";
+import { getStats } from "../services/apiStats";
 
 const periodStyles = {
   sabah: {
@@ -34,10 +34,7 @@ export default function ShowSchedule() {
   } = useQuery({
     queryKey: ["stats", scheduleData?.hId, scheduleData?.user.id],
     queryFn: async () => {
-      const res = await getHomeworkStats(
-        scheduleData?.user.id,
-        scheduleData?.hId
-      );
+      const res = await getStats(scheduleData?.user.id, scheduleData?.hId);
       return res;
     },
   });

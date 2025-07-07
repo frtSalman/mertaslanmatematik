@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getStudentStats } from "../services/apiStats";
+import { getStats } from "../services/apiStats";
 import { useSelector } from "react-redux";
 import StudentPerformanceChart from "../ui/StudentPerformanceChart";
 
@@ -15,7 +15,7 @@ function DashBoard() {
   } = useQuery({
     queryKey: ["stats", studentId],
     queryFn: async () => {
-      const res = await getStudentStats(studentId);
+      const res = await getStats(studentId);
       return res;
     },
   });

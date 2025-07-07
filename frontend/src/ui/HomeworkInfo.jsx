@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
-import { getHomeworkStats } from "../services/apiStats";
+import { getStats } from "../services/apiStats";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -38,10 +38,7 @@ export default function HomeworkInfo({ scheduleData }) {
   } = useQuery({
     queryKey: ["stats"],
     queryFn: async () => {
-      const res = await getHomeworkStats(
-        scheduleData.studentId,
-        scheduleData.hId
-      );
+      const res = await getStats(scheduleData.studentId, scheduleData.hId);
       return res;
     },
   });

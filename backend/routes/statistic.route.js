@@ -1,16 +1,13 @@
 import express from 'express';
 import {
     addStats,
-    getHomeworkStats,
-    getStudentStats,
+    getStats,
     updateStats,
 } from '../controllers/statistic.controller.js';
 
 const router = express.Router();
 
-router.get('/student-stats/:studentId', getStudentStats);
-
-router.get('/all-stats', getHomeworkStats);
+router.get('/get-stats', getStats);
 
 router.post('/add-stats', addStats);
 

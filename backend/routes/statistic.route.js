@@ -1,7 +1,13 @@
 import express from 'express';
-import { addStats, updateStats } from '../controllers/statistic.controller.js';
+import {
+    addStats,
+    getStats,
+    updateStats,
+} from '../controllers/statistic.controller.js';
 
 const router = express.Router();
+
+router.get('/getStats', getStats);
 
 router.post('/add-stats', addStats);
 

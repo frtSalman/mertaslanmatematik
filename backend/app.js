@@ -10,6 +10,7 @@ import userRoutes from './routes/user.route.js';
 import homeworkRoutes from './routes/homework.route.js';
 import statisticRoutes from './routes/statistic.route.js';
 import uploadRoutes from './routes/upload.route.js';
+import { getStats } from './controllers/statistic.controller.js';
 
 dotenv.config();
 const app = express();
@@ -51,6 +52,8 @@ app.use(
 app.get('/', (req, res) => {
     return res.json({ message: 'Welcome To My API' });
 });
+
+app.get('/api/getStats', getStats);
 
 app.use('/api/analysis', statisticRoutes);
 

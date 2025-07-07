@@ -62,7 +62,7 @@ app.use('/api/users', userRoutes);
 
 app.use('/api/homeworks', homeworkRoutes);
 
-app.use('/api/student-statistics', statisticRoutes);
+app.use('/api/analysis', statisticRoutes);
 
 db.sync()
     .then(results =>

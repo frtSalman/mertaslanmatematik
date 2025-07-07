@@ -4,15 +4,25 @@ const HOST = import.meta.env.VITE_API_URL;
 
 const API_URL =
   import.meta.env.MODE === "development"
-    ? `http://${HOST}:5000/api/student-statistics`
+    ? `http://${HOST}:5000/api/analysis`
     : "https://api.mertaslanmatematik.com/api/analysis";
 
 axios.defaults.withCredentials = true;
 
-export async function getStats(studentId, homeworkId) {
+export async function getStudentStats(studentId) {
+  try {
+    const response = await axios.get(`${API_URL}/getStudentStats/${studentId}`);
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+    throw error;
+  }
+}
+
+export async function getHomeworkStats(homeworkId) {
   try {
     const response = await axios.get(
-      `${API_URL}/getStats?studentId=${studentId}&homeworkId=${homeworkId}`
+      `${API_URL}/getHomeworkStats/${homeworkId}`
     );
     return response.data;
   } catch (error) {

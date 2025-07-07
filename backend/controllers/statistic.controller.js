@@ -20,31 +20,40 @@ export const addStats = async (req, res) => {
     }
 };
 
-export const getStats = async (req, res) => {
-    const { studentId, homeworkId } = req.query;
+export const getStudentStats = async (req, res) => {
+    const { id } = req.params;
 
     try {
-        let stats;
+        const stats = await StatEntry.findAll({
+            where: { studentId: id },
+        });
 
-        if (!homeworkId || homeworkId === 'undefined') {
-            stats = await StatEntry.findAll({
-                where: { studentId },
-            });
+        res.status(200).json({
+            success: true,
+            stats,
+        });
+    } catch (error) {
+        console.trace(error.message);
+        res.status(500).json({
+            // 500 Internal Server Error
+            success: false,
+            message: 'Sunucu hatası oluştu.',
+        });
+    }
+};
 
-            res.status(200).json({
-                success: true,
-                stats,
-            });
-        } else {
-            stats = await StatEntry.findAll({
-                where: { homeworkId, studentId },
-            });
+export const getHomeworkStats = async (req, res) => {
+    const { id } = req.params;
 
-            res.status(200).json({
-                success: true,
-                stats,
-            });
-        }
+    try {
+        const stats = await StatEntry.findAll({
+            where: { homeworkId: id },
+        });
+
+        res.status(200).json({
+            success: true,
+            stats,
+        });
     } catch (error) {
         console.trace(error.message);
         res.status(500).json({

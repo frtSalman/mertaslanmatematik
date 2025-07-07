@@ -10,7 +10,6 @@ import userRoutes from './routes/user.route.js';
 import homeworkRoutes from './routes/homework.route.js';
 import statisticRoutes from './routes/statistic.route.js';
 import uploadRoutes from './routes/upload.route.js';
-import { getStats } from './controllers/statistic.controller.js';
 
 dotenv.config();
 const app = express();

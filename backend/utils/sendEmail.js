@@ -25,7 +25,7 @@ export const sendVerificationEmail = async (userEmail, verificationToken) => {
         const info = await transporter.sendMail({
             from: `mertaslanmatematik@gmail.com`,
             to: userEmail,
-            subject: 'Email Adresini Doğrula!',
+            subject: 'Email Adresini Doğrula! ✅',
             html: VERIFICATION_EMAIL_TEMPLATE.replace(
                 '{verificationCode}',
                 verificationToken
@@ -42,7 +42,7 @@ export const sendPasswordResetEmail = async (userEmail, resetPasswordToken) => {
         const info = await transporter.sendMail({
             from: `mertaslanmatematik@gmail.com`,
             to: userEmail,
-            subject: 'Password Yenileme Linki',
+            subject: 'Parola Yenileme Linki 🎯',
             html: PASSWORD_RESET_REQUEST_TEMPLATE.replace(
                 '{resetURL}',
                 `https://www.mertaslanmatematik.com/reset-password/${resetPasswordToken}`
@@ -59,7 +59,7 @@ export const sendResetSuccessEmail = async userEmail => {
         const info = await transporter.sendMail({
             from: `mertaslanmatematik@gmail.com`,
             to: userEmail,
-            subject: 'Parola Yenileme İşlemi Başarılı.',
+            subject: 'Parola Yenileme İşlemi Başarılı 🙌',
             html: PASSWORD_RESET_SUCCESS_TEMPLATE,
         });
         console.log('Email sent:', info.messageId);
@@ -73,7 +73,7 @@ export const sendStudentInvitationEmail = async (userEmail, signupToken) => {
         const info = await transporter.sendMail({
             from: `mertaslanmatematik@gmail.com`,
             to: userEmail,
-            subject: 'Kayıt İşlemleri',
+            subject: 'Kayıt İşlemleri 🧾',
             html: STUDENT_INV_TEMPLATE.replace(
                 '{resetURL}',
                 `https://www.mertaslanmatematik.com/student-signup/${signupToken}`

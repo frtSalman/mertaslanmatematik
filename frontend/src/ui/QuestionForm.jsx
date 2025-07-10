@@ -233,6 +233,12 @@ export default function QuestionForm({ scheduleData, statsData }) {
 
   const styles = periodStyles[scheduleData.period] || periodStyles.ogle;
 
+  function handleHomeworkUpdateStatus() {
+    if (scheduleData.hStatus === false) {
+      updateHomeworkStatus(scheduleData.hId);
+    }
+  }
+
   return (
     <div className={`rounded-2xl ${styles.container} w-full mx-auto`}>
       {lightboxOpen && (
@@ -343,23 +349,35 @@ export default function QuestionForm({ scheduleData, statsData }) {
           </div>
         )}
 
-        {/* Submit Button */}
-        <motion.button
-          type="submit"
-          disabled={daysLeft < 0}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className={`w-full py-2 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white ${styles.button}`}
-        >
-          {statOfDay
-            ? isPhotoUploading
+        <div className="flex flex-row items-center justify-between gap-2">
+          {/* Submit Button */}
+          <motion.button
+            type="button"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className={`w-full p-2 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white ${styles.button}`}
+            onClick={() => handleHomeworkUpdateStatus()}
+          >
+            Tamamlandı
+          </motion.button>
+          {/* Submit Button */}
+          <motion.button
+            type="submit"
+            disabled={daysLeft < 0}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className={`w-full p-2 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white ${styles.button}`}
+          >
+            {statOfDay
+              ? isPhotoUploading
+                ? "Yükleniyor..."
+                : "Güncelle"
+              : isPhotoUploading
               ? "Yükleniyor..."
-              : "Güncelle"
-            : isPhotoUploading
-            ? "Yükleniyor..."
-            : "Oluştur"}
-          {daysLeft < 0 && "Ödev zamanı doldu. ⛔"}
-        </motion.button>
+              : "Oluştur"}
+            {daysLeft < 0 && "Ödev zamanı doldu. ⛔"}
+          </motion.button>
+        </div>
       </form>
     </div>
   );

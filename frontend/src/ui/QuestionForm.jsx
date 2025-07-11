@@ -20,19 +20,19 @@ const periodStyles = {
   sabah: {
     container: "bg-yellow-50 border-yellow-200 text-yellow-800",
     input: "border-yellow-300 focus:ring-yellow-200",
-    button: "bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300",
+    button: "bg-green-500 hover:bg-green-600 focus:ring-green-300",
     icon: "/sunrise.svg",
   },
   ogle: {
     container: "bg-teal-50 border-teal-200 text-teal-800",
     input: "border-teal-300 focus:ring-teal-200",
-    button: "bg-teal-500 hover:bg-teal-600 focus:ring-teal-300",
+    button: "bg-green-500 hover:bg-green-600 focus:ring-green-300",
     icon: "/sun.svg",
   },
   aksam: {
     container: "bg-blue-50 border-blue-200 text-blue-800",
     input: "border-blue-300 focus:ring-blue-200",
-    button: "bg-blue-500 hover:bg-blue-600 focus:ring-blue-300",
+    button: "bg-green-500 hover:bg-green-600 focus:ring-green-300",
     icon: "/night.svg",
   },
 };
@@ -355,10 +355,18 @@ export default function QuestionForm({ scheduleData, statsData }) {
             type="button"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className={`w-full p-2 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white ${styles.button}`}
-            onClick={() => handleHomeworkUpdateStatus()}
+            className={`w-full p-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400`}
+            onClick={() => {
+              if (
+                confirm(
+                  "Bu haftadaki tüm ödevleri tamamladığını onaylıyor musun?"
+                )
+              ) {
+                handleHomeworkUpdateStatus();
+              }
+            }}
           >
-            Tamamlandı
+            🗓️ Haftayı Tamamla
           </motion.button>
           {/* Submit Button */}
           <motion.button
@@ -370,11 +378,11 @@ export default function QuestionForm({ scheduleData, statsData }) {
           >
             {statOfDay
               ? isPhotoUploading
-                ? "Yükleniyor..."
-                : "Güncelle"
+                ? "⏳ Yükleniyor..."
+                : "🎯 Günü Güncelle"
               : isPhotoUploading
-              ? "Yükleniyor..."
-              : "Oluştur"}
+              ? "⏳ Yükleniyor..."
+              : "🎯 Günü Tamamla"}
             {daysLeft < 0 && "Ödev zamanı doldu. ⛔"}
           </motion.button>
         </div>

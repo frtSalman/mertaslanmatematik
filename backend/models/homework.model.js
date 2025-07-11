@@ -87,7 +87,7 @@ Homework.associate = models => {
     Homework.hasMany(models.UnsolvedQuestion, {
         foreignKey: 'homeworkId',
         as: 'unsolved_questions',
-        onDelete: 'CASCADE', // Optional: cascade delete
+        onDelete: 'SET NULL', // Optional: cascade delete
     });
 
     UnsolvedQuestion.belongsTo(models.Homework, { foreignKey: 'homeworkId' });

@@ -11,7 +11,7 @@ const UnsolvedQuestion = db.define(
         },
         homeworkId: {
             type: DataTypes.UUID,
-            allowNull: false,
+            allowNull: true,
             references: { model: 'homeworks', key: 'id' },
         },
         studentId: {

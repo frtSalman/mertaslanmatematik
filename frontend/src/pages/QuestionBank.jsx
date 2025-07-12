@@ -14,7 +14,7 @@ const API_URL =
     ? "http://localhost:5000/api/uploads"
     : "https://api.mertaslanmatematik.com/api/uploads";
 
-const QuestionCard = ({ question, updateUQA }) => {
+const QuestionCard = ({ question, updateUQA, deleteUQ }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const { user } = useSelector((state) => state.auth);
   /* const { mutate: updateUQA, isPending, error } = useUpdateUQAppearance(); */
@@ -37,25 +37,7 @@ const QuestionCard = ({ question, updateUQA }) => {
     const urlObj = new URL(question.imageUrl);
     const filePath = urlObj.pathname.substring(1);
 
-    const response = await fetch(
-      `${API_URL}/delete-unsolved-question-path/${filePath}`,
-      {
-        method: "DELETE",
-      }
-    );
-    const data = await response.json();
-    /* Bunny CDN den sil */
-    console.log(data);
-    try {
-      await fetch(`${data.deleteUrl}`, {
-        method: "DELETE",
-        headers: {
-          AccessKey: data.key,
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    deleteUQ(filePath);
   }
 
   if (user.role === "student" && !question.show) return null;
@@ -172,6 +154,49 @@ function QuestionBank() {
     },
   });
 
+  const { mutate: deleteUQ } = useMutation({
+    mutationFn: async (filePath) => {
+      const response = await fetch(
+        `${API_URL}/delete-unsolved-question-path/${filePath}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Sunucu hatası");
+      }
+
+      return response;
+    },
+    onSuccess: async (response) => {
+      qC.invalidateQueries({
+        queryKey: ["unsolvedQuestions", studentId],
+      });
+
+      const data = await response.json();
+
+      if (!data.deleteUrl || !data.key) {
+        throw new Error("Gerekli silme verileri alınamadı.");
+      }
+
+      try {
+        await fetch(`${data.deleteUrl}`, {
+          method: "DELETE",
+          headers: {
+            AccessKey: data.key,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+        throw new Error(error.message || "CDN dosyası silinemedi.");
+      }
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
   if (isPending)
     return (
       <div className="flex justify-center mt-12">
@@ -212,6 +237,7 @@ function QuestionBank() {
                 key={question.id}
                 question={question}
                 updateUQA={updateUQA}
+                deleteUQ={deleteUQ}
               />
             ))}
           </div>

@@ -11,11 +11,14 @@ import {
 import StudentList from "./StudentList";
 import useAddHomework from "../hooks/useAddHomework";
 import toast from "react-hot-toast";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import tr from "date-fns/locale/tr";
 import { useState } from "react";
 import TimeSelect from "./TimeSelect.jsx";
 import useFetchStudents from "../hooks/useFetchStudents";
+
+registerLocale("tr", tr);
 
 function AddHomework({ teacherId }) {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -182,12 +185,42 @@ function AddHomework({ teacherId }) {
       </div>
 
       {/* Tarih Seçici */}
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 w-[140px]">
         <DatePicker
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
-          className="w-[110px] px-2 py-2 border border-gray-300 rounded-md bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          locale="tr"
+          dateFormat="dd/MM/yyyy"
+          className="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg shadow-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
           placeholderText="Teslim tarihi"
+          calendarClassName="font-sans rounded-lg shadow-lg border border-gray-200"
+          dayClassName={(date) =>
+            date.getDate() === new Date().getDate() ? "!bg-blue-100" : undefined
+          }
+          renderCustomHeader={({ monthDate, decreaseMonth, increaseMonth }) => (
+            <div className="flex items-center justify-between px-2 py-1">
+              <button
+                type="button"
+                onClick={decreaseMonth}
+                className="p-1 text-gray-500 rounded-full hover:bg-gray-100"
+              >
+                {"<"}
+              </button>
+              <span className="text-base font-semibold text-gray-700">
+                {monthDate.toLocaleString("tr", {
+                  month: "long",
+                  year: "numeric",
+                })}
+              </span>
+              <button
+                type="button"
+                onClick={increaseMonth}
+                className="p-1 text-gray-500 rounded-full hover:bg-gray-100"
+              >
+                {">"}
+              </button>
+            </div>
+          )}
         />
       </div>
 

@@ -41,7 +41,7 @@ const StudentPerformanceChart = ({ data }) => {
                   value={selectedSubject}
                   onChange={(e) => setSelectedSubject(e.target.value)}
                 >
-                  <option value="">Ders Seçin</option>
+                  <option value="">Konu Seçin</option>
                   {subjects.map((s) => (
                     <option key={s} value={s}>
                       {s}

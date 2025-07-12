@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux";
 import { ThumbsUp, ThumbsDown, Trash2 } from "lucide-react";
-import useFetchUnsolvedQuestions from "../hooks/useFetchUnsolvedQuestions";
-import useUpdateUQAppearance from "../hooks/useUpdateUQAppearance";
 import { useState } from "react";
 import LightboxQB from "../ui/LightboxQB";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -36,8 +34,11 @@ const QuestionCard = ({ question, updateUQA }) => {
 
   async function handleDelete() {
     /* unsolvedQuestions dan sil */
+    const urlObj = new URL(question.imageUrl);
+    const filePath = urlObj.pathname.substring(1);
+
     const response = await fetch(
-      `${API_URL}/delete-unsolved-question-path/${question.imageUrl}`,
+      `${API_URL}/delete-unsolved-question-path/${filePath}`,
       {
         method: "DELETE",
       }
@@ -148,20 +149,7 @@ function QuestionBank() {
   if (selectStudent) {
     studentId = selectStudent[0]?.id || null;
   }
-  let updatedQuestionId;
-  const qC = useQueryClient();
-  const { mutate: updateUQA } = useMutation({
-    mutationFn: updateQuestionAppearance,
-    onSuccess: (data) => {
-      updatedQuestionId = data.questionId;
-      qC.invalidateQueries({
-        queryKey: ["unsolvedQuestions", studentId],
-      });
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+
   const { data, error, isPending } = useQuery({
     queryKey: ["unsolvedQuestions", studentId],
     queryFn: async () => {
@@ -169,6 +157,19 @@ function QuestionBank() {
       return res || [];
     },
     refetchInterval: user.role === "student" ? 10000 : false,
+  });
+
+  const qC = useQueryClient();
+  const { mutate: updateUQA } = useMutation({
+    mutationFn: updateQuestionAppearance,
+    onSuccess: () => {
+      qC.invalidateQueries({
+        queryKey: ["unsolvedQuestions", studentId],
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
   });
 
   if (isPending)

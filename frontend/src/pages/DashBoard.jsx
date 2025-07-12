@@ -21,13 +21,13 @@ function DashBoard() {
   });
 
   // Toplam istatistikleri hesapla
-  const totalAttempted =
-    statsData?.stats.reduce((sum, d) => sum + parseInt(d.attempted), 0) || 0;
-  const totalCorrect =
-    statsData?.stats.reduce((sum, d) => sum + parseInt(d.correct), 0) || 0;
-  const totalSuccessRate =
-    totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0;
-
+  const overall = {
+    attempted: statsData?.stats.reduce((sum, d) => sum + +d.attempted, 0),
+    correct: statsData?.stats.reduce((sum, d) => sum + +d.correct, 0),
+  };
+  overall.success = overall.attempted
+    ? Math.round((overall.correct / overall.attempted) * 100)
+    : 0;
   return (
     <div className="max-w-6xl min-h-screen mx-auto">
       <div className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-3">
@@ -54,7 +54,7 @@ function DashBoard() {
                 Çözülen Soru
               </h3>
               <p className="mt-1 text-2xl font-bold text-gray-900">
-                {totalAttempted}
+                {overall.attempted}
               </p>
             </div>
           </div>
@@ -83,7 +83,7 @@ function DashBoard() {
                 Doğru Cevap
               </h3>
               <p className="mt-1 text-2xl font-bold text-gray-900">
-                {totalCorrect}
+                {overall.correct}
               </p>
             </div>
           </div>
@@ -91,9 +91,9 @@ function DashBoard() {
 
         <div
           className={`rounded-xl p-6 border ${
-            totalSuccessRate > 70
+            overall.success > 70
               ? "bg-green-50 border-green-100"
-              : totalSuccessRate > 50
+              : overall.success > 50
               ? "bg-yellow-50 border-yellow-100"
               : "bg-red-50 border-red-100"
           }`}
@@ -101,9 +101,9 @@ function DashBoard() {
           <div className="flex items-center">
             <div
               className={`p-3 rounded-lg ${
-                totalSuccessRate > 70
+                overall.success > 70
                   ? "bg-green-100"
-                  : totalSuccessRate > 50
+                  : overall.success > 50
                   ? "bg-yellow-100"
                   : "bg-red-100"
               }`}
@@ -111,9 +111,9 @@ function DashBoard() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`h-6 w-6 ${
-                  totalSuccessRate > 70
+                  overall.success > 70
                     ? "text-green-600"
-                    : totalSuccessRate > 50
+                    : overall.success > 50
                     ? "text-yellow-600"
                     : "text-red-600"
                 }`}
@@ -135,14 +135,14 @@ function DashBoard() {
               </h3>
               <p
                 className={`text-2xl font-bold mt-1 ${
-                  totalSuccessRate > 70
+                  overall.success > 70
                     ? "text-green-600"
-                    : totalSuccessRate > 50
+                    : overall.success > 50
                     ? "text-yellow-600"
                     : "text-red-600"
                 }`}
               >
-                {totalSuccessRate}%
+                {overall.success}%
               </p>
             </div>
           </div>

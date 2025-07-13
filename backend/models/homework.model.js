@@ -83,14 +83,6 @@ Homework.associate = models => {
         as: 'timetable',
         onDelete: 'CASCADE', // Optional: cascade delete
     });
-
-    Homework.hasMany(models.UnsolvedQuestion, {
-        foreignKey: 'homeworkId',
-        as: 'unsolved_questions',
-        onDelete: 'SET NULL', // Optional: cascade delete
-    });
-
-    UnsolvedQuestion.belongsTo(models.Homework, { foreignKey: 'homeworkId' });
 };
 
 export default Homework;

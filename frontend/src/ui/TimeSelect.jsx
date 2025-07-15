@@ -19,6 +19,7 @@ function TimeSelect({ selectedSchedule, setSelectedSchedule }) {
 
   const [currentTime, setCurrentTime] = useState("");
   const [showDayDropdown, setShowDayDropdown] = useState(false);
+  const [everyDay, setEveryDay] = useState(false);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -46,6 +47,18 @@ function TimeSelect({ selectedSchedule, setSelectedSchedule }) {
       return { ...prev, [currentTime]: newDays };
     });
   };
+
+  useEffect(() => {
+    if (everyDay === true) {
+      setSelectedSchedule((prev) => {
+        return { ...prev, [currentTime]: weekDays };
+      });
+    } else {
+      setSelectedSchedule((prev) => {
+        return { ...prev, [currentTime]: [] };
+      });
+    }
+  }, [everyDay]);
 
   return (
     <div className="flex flex-row items-center justify-center gap-2">
@@ -76,13 +89,26 @@ function TimeSelect({ selectedSchedule, setSelectedSchedule }) {
             className="w-48 px-4 py-2 text-left border border-gray-200 rounded-lg shadow-sm bg-gray-50 hover:bg-gray-100"
           >
             {selectedSchedule[currentTime]?.length > 0
-              ? selectedSchedule[currentTime].join(", ")
+              ? selectedSchedule[currentTime]?.length === 7
+                ? "Tüm Hafta"
+                : selectedSchedule[currentTime].join(", ")
               : "Gün Seçin"}
           </button>
 
           {showDayDropdown && (
             <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
               <div className="p-2 space-y-1 overflow-y-auto max-h-48">
+                <label className="flex items-center p-2 space-x-2 cursor-pointer hover:bg-orange-50">
+                  <input
+                    type="checkbox"
+                    checked={everyDay}
+                    onChange={() => {
+                      setEveryDay(!everyDay);
+                    }}
+                    className="text-orange-500 rounded focus:ring-orange-500"
+                  />
+                  <span className="flex-1">Tüm Hafta</span>
+                </label>
                 {weekDays.map((day) => (
                   <label
                     key={day}

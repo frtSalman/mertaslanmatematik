@@ -73,8 +73,11 @@ function AddHomework({ teacherId }) {
     const programData = {};
 
     // Update each day with period information
-    timeSlots.forEach(({ day, period }) => {
+    timeSlots.forEach((p) => {
+      const day = p.day;
+      const period = p.period;
       programData[day] = [
+        ...(programData[day] || []),
         {
           title,
           pageRanges,

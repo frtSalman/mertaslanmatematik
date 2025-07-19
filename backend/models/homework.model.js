@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from '../utils/database.js';
 import Users from './user.model.js';
-import UnsolvedQuestion from './unsolvedQuesiton.model.js';
 
 const Homework = db.define(
     'Homework',
